@@ -35,3 +35,8 @@ def merge_sort(lista,esquerda,direita):
         merge_sort(lista,esquerda,meio)
         merge_sort(lista,meio+1,direita)
     merge(lista,esquerda,direita,meio)
+
+
+lista = [4, 60, 4, 8, 23, 89, 45, 44, 100]
+merge_sort(lista, 0, len(lista)-1)
+print(lista)
