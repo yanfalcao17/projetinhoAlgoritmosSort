@@ -1,73 +1,65 @@
-def merge_sort_3_way(L):
+def merge_sort_3_way(lista):
 
-    if len(L) <= 1:
+    if len(lista) <= 1:
         return
-    mid1 = len(L)//3
-    mid2 = 2*len(L)//3
-    left, mid, right = L[:mid1], L[mid1:mid2] , L[mid2:]
+    meio1 = len(lista)//3
+    meio2 = 2*len(lista)//3
+    esquerda, meio, direita = lista[:meio1], lista[meio1:meio2] , lista[meio2:]
 
-    #Mergesort core
-    merge_sort_3_way(left)
-    merge_sort_3_way(mid)
-    merge_sort_3_way(right)
-    temp = merge_three(left, mid, right)
+    merge_sort_3_way(esquerda)
+    merge_sort_3_way(meio)
+    merge_sort_3_way(direita)
+    temp = merge_3(esquerda, meio, direita)
     for i in range(len(temp)):
-        L[i] = temp[i]
+        lista[i] = temp[i]
 
-def merge_three(left, mid, right):
-    L = []
+def merge_3(esqueda, meio, direita):
+    lista = []
     i = j = k = 0
-    while i < len(left) or k < len(right) or j < len(mid):
-        #Check it there's still elements to be merged from left and/or right
-        if i >= len(left):
-            L = L + merge(mid[j:],right[k:])
+    while i < len(esqueda) or k < len(direita) or j < len(meio):
+        if i >= len(esqueda):
+            lista = lista + merge(meio[j:],direita[k:])
             break
-        elif j >= len(mid):
-            L = L + merge(left[i:],right[k:])
+        elif j >= len(meio):
+            lista = lista + merge(esqueda[i:],direita[k:])
             break
-        elif k >= len(right):
-            L = L + merge(left[i:],mid[j:])
+        elif k >= len(direita):
+            lista = lista + merge(esqueda[i:],meio[j:])
             break
         else:
-            if left[i] >= mid[j]:
-                if mid[j] >= right[k]:
-                    L.append(right[k])
+            if esqueda[i] >= meio[j]:
+                if meio[j] >= direita[k]:
+                    lista.append(direita[k])
                     k += 1
                 else:
-                    L.append(mid[j])
+                    lista.append(meio[j])
                     j += 1
             else:
-                if left[i] >= right[k]:
-                    L.append(right[k])
+                if esqueda[i] >= direita[k]:
+                    lista.append(direita[k])
                     k += 1
                 else:
-                    L.append(left[i])
+                    lista.append(esqueda[i])
                     i += 1
-    return L
+    return lista
 
 
 
-def merge(left, right):
+def merge(esquerda, direita):
     L = []
     i = j = 0
-    while i < len(left) or j < len(right):
-        #Check it there's still elements to be merged from left and/or right
-        if i >= len(left):
-            L.append(right[j])
+    while i < len(esquerda) or j < len(direita):
+        if i >= len(esquerda):
+            L.append(direita[j])
             j += 1
-        elif j >= len(right):
-            L.append(left[i])
+        elif j >= len(direita):
+            L.append(esquerda[i])
             i += 1
         else:
-            if left[i] <= right[j]:
-                L.append(left[i])
+            if esquerda[i] <= direita[j]:
+                L.append(esquerda[i])
                 i += 1
             else:
-                L.append(right[j])
+                L.append(direita[j])
                 j+=1
     return L
-
-
-lista = [4, 60, 4, 8, 23, 89, 45, 44, 100]
-merge_sort_3_way(lista)
-print(lista)
