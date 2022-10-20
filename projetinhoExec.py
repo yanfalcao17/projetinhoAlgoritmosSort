@@ -8,7 +8,7 @@ def criar_lista_aleatoria(n):
     return lista
 
 def gerar_tamanho_lista():
-    n = random.randint(10,1000)
+    n = random.randint(10,10000)
     return n
 
 def numero_de_entradas():
@@ -22,9 +22,7 @@ def gerar_entradas():
     for i in range(n):
         tamanho = gerar_tamanho_lista()
         lista.append(criar_lista_aleatoria(tamanho))
-        print(tamanho)
     
-    print(n)
     return lista
 
 
