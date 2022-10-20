@@ -46,20 +46,20 @@ def merge_3(esqueda, meio, direita):
 
 
 def merge(esquerda, direita):
-    L = []
+    lista = []
     i = j = 0
     while i < len(esquerda) or j < len(direita):
         if i >= len(esquerda):
-            L.append(direita[j])
+            lista.append(direita[j])
             j += 1
         elif j >= len(direita):
-            L.append(esquerda[i])
+            lista.append(esquerda[i])
             i += 1
         else:
             if esquerda[i] <= direita[j]:
-                L.append(esquerda[i])
+                lista.append(esquerda[i])
                 i += 1
             else:
-                L.append(direita[j])
+                lista.append(direita[j])
                 j+=1
-    return L
+    return lista
